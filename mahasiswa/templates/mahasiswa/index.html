@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}All Mahasiswa{% endblock %}
+
+{% block content %}
+
+<!-- ! Ada Mahasiswa -->
+{% if mahasiswas.count != 0 %}
+<div class="grid w-2/3">
+  <table class="table-auto p-3 mb-5">
+    <thead class="bg-yellow-400">
+      <tr>
+        <th class="text-start border-2 border-gray-600 p-1">NIM</th>
+        <th class="text-start border-2 border-gray-600 p-1">Nama</th>
+        <th class="text-start border-2 border-gray-600 p-1">Prodi</th>
+        <th class="text-start border-2 border-gray-600 p-1">Kelas</th>
+        <th class="text-start border-2 border-gray-600 p-1">Alamat</th>
+        <th class="text-start border-2 border-gray-600"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for mahasiswa in mahasiswas %}
+      <tr class="cursor-default hover:bg-teal-200 active:bg-teal-300">
+        <td class="text-start border-2 border-gray-600 p-2">
+          {{ mahasiswa.nim }}
+        </td>
+        <td class="text-start border-2 border-gray-600 p-2">
+          {{ mahasiswa.nama }}
+        </td>
+        <td class="text-start border-2 border-gray-600 p-2">
+          {{ mahasiswa.prodi }}
+        </td>
+        <td class="text-start border-2 border-gray-600 p-2">
+          {{ mahasiswa.kelas }}
+        </td>
+        <td class="text-start border-2 border-gray-600 p-2">
+          {{ mahasiswa.alamat }}
+        </td>
+        <td class="text-start border-2 border-gray-600 bg-orange-300 hover:bg-orange-400">
+          <a href="{% url 'mahasiswa:edit' mahasiswa.nim %}" class="px-4 py-2 m-0">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'mahasiswa:create' %}"
+    class="place-self-start bg-teal-300 hover:bg-teal-400 px-4 py-2 rounded-md">Tambah Mahasiswa</a>
+
+</div>
+
+<!-- ! Tidak ada Mahasiswa -->
+{% else %}
+<div class="grid w-2/3">
+  <div class="bg-red-300 px-5 py-2 rounded-md flex justify-between">
+    <p>Daftar mahasiswa masih kosong</p>
+    <span><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+  </div>
+
+  <a href="{% url 'mahasiswa:create' %}"
+    class="justify-self-end mt-3 bg-teal-300 hover:bg-teal-400 px-4 py-2 rounded-md">Tambah Mahasiswa</a>
+
+</div>
+
+{% endif %} {% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Tambah Mahasiswa{% endblock %}
+
+{% block content %}
+<div class="rounded-md bg-white p-5 w-2/3 shadow-lg  shadow-gray-300">
+    <div class="text-lg mb-1">Tambah Mahasiswa</div>
+
+    <form action="." method="POST" enctype="multipart/form-data" class="block">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="grid">
+            {{ field.label }}
+            <div class="mb-2">{{ field }}</div>
+            {% if field.errors %}
+            <div class="text-sm bg-red-300 p-2 rounded-md border-2 border-red-700 flex">
+                <span><i class="fa fa-exclamation-circle text-red-800" aria-hidden="true"></i></span>
+                <p class="ml-3">{{ field.errors }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+        <input type="submit" value="Tambah"
+            class="justify-self-end mt-3 bg-teal-300 hover:bg-teal-400 px-4 py-2 rounded-md w-full hover:cursor-pointer">
+        <a href="/"
+            class="justify-self-end mt-2 border border-gray-500  hover:bg-gray-400 px-4 py-2 rounded-md w-full block hover:cursor-pointer text-center">Batal</a>
+
+    </form>
+</div>
+{% endblock %}

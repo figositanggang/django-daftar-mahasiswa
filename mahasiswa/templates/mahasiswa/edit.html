@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit
+{% endblock %}
+
+{% load static %}
+{% block script %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="rounded-md bg-gray-100 p-5 w-2/3">
+    <div class="text-lg mb-1">Edit Mahasiswa</div>
+
+    <!-- @ Form -->
+    <form action="." method="POST" enctype="multipart/form-data" class="block">
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="grid">
+            {{ field.label }}
+            {{ field }}
+            {% if field.errors %}
+            <div class="text-sm bg-red-300 p-2 rounded-md border-2 border-red-700 flex">
+                <span><i class="fa fa-exclamation-circle text-red-800" aria-hidden="true"></i></span>
+                <p class="ml-3">{{ field.errors }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        {% endfor %}
+
+        <input type="submit" value="Edit"
+            class="justify-self-end mt-3 bg-orange-300 hover:bg-orange-400 px-4 py-2 rounded-md w-full hover:cursor-pointer">
+    </form>
+    <!-- @ -->
+
+    <!-- @ Delete Button -->
+    <button
+        class="justify-self-end mt-3 bg-red-500 hover:bg-red-700 px-4 py-2 rounded-md w-full block text-center hover:cursor-pointer"
+        onclick="openPopUp()">Hapus</button>
+    <!-- @ -->
+
+    <a href="/"
+        class="justify-self-end mt-2 border border-gray-500  hover:bg-gray-400 px-4 py-2 rounded-md w-full block hover:cursor-pointer text-center">Batal</a>
+
+    <!-- @ Pop Up Delete -->
+    <div class="opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-brightness-90 bg-white px-5 py-2 rounded-md grid justify-items-center"
+        id="pop-up">
+        <p>Yakin Hapus?</p>
+        <div class="my-1"></div>
+        <div class="flex">
+            <a href="{% url 'mahasiswa:delete' mahasiswa.nim %}"
+                class="justify-self-end mt-3 bg-red-500 hover:bg-red-700 px-6 py-2 rounded-md w-full block text-center hover:cursor-pointer">Ya</a>
+            <div class="mx-2"></div>
+            <button
+                class="justify-self-end mt-3 border border-gray-500 hover:bg-gray-300 px-6 py-2 rounded-md w-full block text-center hover:cursor-pointer"
+                onclick="closePopUp()">Batal</button>
+        </div>
+    </div>
+    <!-- @ -->
+
+</div>
+{% endblock %}
