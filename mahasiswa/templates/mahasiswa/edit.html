@@ -37,29 +37,12 @@ Edit
     <!-- @ -->
 
     <!-- @ Delete Button -->
-    <button
-        class="justify-self-end mt-3 bg-red-500 hover:bg-red-700 px-4 py-2 rounded-md w-full block text-center hover:cursor-pointer"
-        onclick="openPopUp()">Hapus</button>
+    <a class="justify-self-end mt-3 bg-red-500 hover:bg-red-700 px-4 py-2 rounded-md w-full block text-center hover:cursor-pointer"
+        href="{% url 'mahasiswa:delete' mahasiswa.nim%}">Hapus</a>
     <!-- @ -->
 
     <a href="/"
         class="justify-self-end mt-2 border border-gray-500  hover:bg-gray-400 px-4 py-2 rounded-md w-full block hover:cursor-pointer text-center">Batal</a>
-
-    <!-- @ Pop Up Delete -->
-    <div class="opacity-0 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 backdrop-brightness-90 bg-white px-5 py-2 rounded-md grid justify-items-center"
-        id="pop-up">
-        <p>Yakin Hapus?</p>
-        <div class="my-1"></div>
-        <div class="flex">
-            <a href="{% url 'mahasiswa:delete' mahasiswa.nim %}"
-                class="justify-self-end mt-3 bg-red-500 hover:bg-red-700 px-6 py-2 rounded-md w-full block text-center hover:cursor-pointer">Ya</a>
-            <div class="mx-2"></div>
-            <button
-                class="justify-self-end mt-3 border border-gray-500 hover:bg-gray-300 px-6 py-2 rounded-md w-full block text-center hover:cursor-pointer"
-                onclick="closePopUp()">Batal</button>
-        </div>
-    </div>
-    <!-- @ -->
 
 </div>
 {% endblock %}

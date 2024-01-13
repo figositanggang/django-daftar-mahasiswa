@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import TextInput, Select
+from django.forms import NumberInput, TextInput, Select
 from .models import Mahasiswa
 
 class MahasiswaCreate(forms.ModelForm):
@@ -7,7 +7,7 @@ class MahasiswaCreate(forms.ModelForm):
         model = Mahasiswa
         fields = "__all__"
         widgets = {
-            "nim": TextInput(
+            "nim": NumberInput(
                 attrs={
                     "class": "border-2 border-gray-700 rounded-md px-2 py-1 w-1/2",
                     "placeholder": "NIM",
