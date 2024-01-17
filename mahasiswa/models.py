@@ -1,28 +1,30 @@
 from django.db import models
 
+ProdiChoices = (
+    (
+        "Teknik Informatika",
+        "Teknik Informatika",
+    ),
+    (
+        "Sistem Informasi",
+        "Sistem Informasi",
+    ),
+    (
+        "Manajemen",
+        "Manajemen",
+    ),
+    (
+        "Akuntansi",
+        "Akuntansi",
+    ),
+)
 
 class Mahasiswa(models.Model):
-    class Prodi(models.TextChoices):
-        TI = (
-            "Teknik Informatika",
-            "Teknik Informatika",
-        )
-        SI = (
-            "Sistem Informasi",
-            "Sistem Informasi",
-        )
-        MA = (
-            "Manajemen",
-            "Manajemen",
-        )
-        AK = (
-            "Akuntansi",
-            "Akuntansi",
-        )
-
     nim = models.CharField(max_length=50, unique=True, null=False, default="")
     nama = models.CharField(max_length=255)
-    prodi = models.CharField(max_length=50, choices=Prodi, default=Prodi.TI)
+    prodi = models.CharField(
+        max_length=50, choices=ProdiChoices, default="Teknik Informatika"
+    )
     kelas = models.CharField(max_length=20)
     alamat = models.TextField(max_length=255)
 

@@ -15,3 +15,7 @@ env/
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+kubectl.exe.sha256
+
+*.yml

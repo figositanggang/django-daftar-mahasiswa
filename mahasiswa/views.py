@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Mahasiswa
 from .forms import MahasiswaCreate, MahasiswaEdit
 
-
 def index(req):
     mahasiswas = Mahasiswa.objects.all()
 
@@ -11,7 +10,6 @@ def index(req):
         "mahasiswa/index.html",
         {"mahasiswas": mahasiswas},
     )
-
 
 def create(req):
     form = MahasiswaCreate
@@ -23,6 +21,7 @@ def create(req):
             form.save()
             return redirect("/")
         else:
+            print("AW")
             return render(req, "mahasiswa/create.html", {"form": form})
 
     else:
@@ -31,7 +30,6 @@ def create(req):
             "mahasiswa/create.html",
             {"form": form},
         )
-
 
 def edit(req, nim):
     nim = int(nim)
@@ -47,7 +45,6 @@ def edit(req, nim):
         return redirect("/")
 
     return render(req, "mahasiswa/edit.html", {"form": form, "mahasiswa": mahasiswa})
-
 
 def delete(req, nim):
     nim = int(nim)
